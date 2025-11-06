@@ -1,97 +1,70 @@
-# Service Mesh Observability
+# Architecture Documentation - Service Mesh Observability
 
-> **Service mesh observability with Istio telemetry, distributed tracing, and metrics collection**
+## System Overview
 
-[![AWS](https://img.shields.io/badge/AWS-Cloud-orange)](https://aws.amazon.com/)
-[![CDK Python](https://img.shields.io/badge/CDK_Python-IaC-blue)]()
+Service mesh observability with Istio telemetry, distributed tracing, and metrics collection
 
-## 🎯 Overview
+## Component Details
 
-Expert-level CDK Python implementation demonstrating production-ready infrastructure patterns for enterprise environments.
+### Infrastructure Layer
+- High availability across multiple AZs
+- Auto-scaling capabilities
+- Load balancing
 
-**Use Case**: Service mesh observability with Istio telemetry, distributed tracing, and metrics collection
+### Security Layer
+- Encryption at rest (KMS)
+- Encryption in transit (TLS 1.3)
+- Network isolation
+- IAM policies
 
-## 🏗️ Architecture
+### Data Layer
+- Primary data store
+- Caching layer
+- Backup and recovery
+
+### Monitoring Layer
+- Metrics collection
+- Log aggregation
+- Alerting system
+
+## Deployment Architecture
 
 ```mermaid
-graph TB
-    subgraph Users["End Users"]
-        Client[Clients/Applications]
-    end
+graph LR
+    Dev[Development] --> Staging
+    Staging --> Production[Production]
     
-    subgraph Infrastructure["Cloud Infrastructure"]
-        LB[Load Balancer]
-        App[Application Layer]
-        Data[Data Layer]
-    end
-    
-    subgraph Monitoring["Observability"]
-        Metrics[Metrics Collection]
-        Logs[Centralized Logging]
-        Alerts[Alerting System]
-    end
-    
-    Client --> LB
-    LB --> App
-    App --> Data
-    
-    App --> Metrics
-    App --> Logs
-    Metrics --> Alerts
-    
-    style Infrastructure fill:#E8F5E9
-    style Monitoring fill:#FFF3E0
+    style Dev fill:#E3F2FD
+    style Staging fill:#FFF3E0
+    style Production fill:#E8F5E9
 ```
 
-## ✨ Key Features
+## Network Topology
 
-- ✅ High availability across multiple AZs
-- ✅ Auto-scaling based on demand
-- ✅ Comprehensive monitoring and alerting
-- ✅ Security best practices
-- ✅ Cost optimization
-- ✅ Disaster recovery ready
+- VPC: 10.0.0.0/16
+- Public Subnets: 10.0.1.0/24, 10.0.2.0/24
+- Private Subnets: 10.0.11.0/24, 10.0.12.0/24
 
-## 📦 Infrastructure Code
+## Scalability
 
-**Lines of Code**: 150+  
-**Technology**: CDK Python  
-**Cloud Provider**: AWS (Multi-region capable)
+- Horizontal scaling with auto-scaling groups
+- Vertical scaling for database tier
+- Multi-region capability
 
-## 🚀 Quick Deploy
+## Disaster Recovery
 
-```bash
-# Initialize and deploy
-cd service-mesh-observability
-npm install
-cdk deploy
-```
+- **RTO**: 15 minutes
+- **RPO**: 5 minutes
+- Automated backups
+- Cross-region replication
 
-## 📊 Resources Created
+## Cost Optimization
 
-- CDK Stack with nested constructs
-- High availability components
-- Monitoring and logging
-- Security controls
+- Spot instances for non-critical workloads
+- Reserved instances for steady-state
+- Auto-scaling to match demand
+- Lifecycle policies for storage
 
+---
 
-## 💰 Cost Estimate
-
-**Monthly**: ~$200-500 (varies by usage)
-
-## 🔐 Security
-
-- Encryption at rest and in transit
-- IAM least privilege
-- Security group restrictions
-- Audit logging enabled
-
-## 📚 Documentation
-
-- [Architecture Details](ARCHITECTURE.md)
-- [Deployment Guide](docs/DEPLOYMENT.md)
-- [Operations Runbook](docs/RUNBOOK.md)
-
-**Author**: Rahul Ladumor  
-**Email**: rahuldladumor@gmail.com  
-**License**: MIT 2025
+**Last Updated**: 2025-11-06

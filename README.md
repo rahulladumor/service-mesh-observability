@@ -1,97 +1,108 @@
-# Service Mesh Observability
+# 🚀 Service Mesh Observability
 
 > **Service mesh observability with Istio telemetry, distributed tracing, and metrics collection**
 
-[![AWS](https://img.shields.io/badge/AWS-Cloud-orange)](https://aws.amazon.com/)
 [![CDK Python](https://img.shields.io/badge/CDK_Python-IaC-blue)]()
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-## 🎯 Overview
+## 📋 Overview
 
-Expert-level CDK Python implementation demonstrating production-ready infrastructure patterns for enterprise environments.
+Service mesh observability with Istio telemetry, distributed tracing, and metrics collection
 
-**Use Case**: Service mesh observability with Istio telemetry, distributed tracing, and metrics collection
+**Primary Use Case**: Microservices observability
 
 ## 🏗️ Architecture
 
 ```mermaid
 graph TB
-    subgraph Users["End Users"]
-        Client[Clients/Applications]
+    subgraph "Control Plane"
+        API[API Gateway]
+        Auth[Authentication]
     end
     
-    subgraph Infrastructure["Cloud Infrastructure"]
-        LB[Load Balancer]
-        App[Application Layer]
-        Data[Data Layer]
+    subgraph "Data Plane"
+        Service1[Service Layer]
+        Data[(Data Storage)]
     end
     
-    subgraph Monitoring["Observability"]
-        Metrics[Metrics Collection]
-        Logs[Centralized Logging]
-        Alerts[Alerting System]
+    subgraph "Observability"
+        Metrics[CloudWatch Metrics]
+        Logs[CloudWatch Logs]
     end
     
-    Client --> LB
-    LB --> App
-    App --> Data
+    API --> Auth
+    Auth --> Service1
+    Service1 --> Data
+    Service1 -.-> Metrics
+    Service1 -.-> Logs
     
-    App --> Metrics
-    App --> Logs
-    Metrics --> Alerts
-    
-    style Infrastructure fill:#E8F5E9
-    style Monitoring fill:#FFF3E0
+    style "Control Plane" fill:#E3F2FD
+    style "Data Plane" fill:#E8F5E9
+    style Observability fill:#FFF3E0
 ```
 
-## ✨ Key Features
+## ✨ Features
 
-- ✅ High availability across multiple AZs
-- ✅ Auto-scaling based on demand
-- ✅ Comprehensive monitoring and alerting
-- ✅ Security best practices
-- ✅ Cost optimization
-- ✅ Disaster recovery ready
+- ✅ Istio service mesh
+- ✅ Distributed tracing (Jaeger)
+- ✅ Prometheus metrics
+- ✅ Grafana dashboards
+- ✅ Service dependency mapping
+- ✅ Request tracing
+- ✅ Error rate monitoring
+- ✅ Latency analysis
 
-## 📦 Infrastructure Code
 
-**Lines of Code**: 150+  
-**Technology**: CDK Python  
-**Cloud Provider**: AWS (Multi-region capable)
+## 🚀 Quick Start
 
-## 🚀 Quick Deploy
+### Prerequisites
+- AWS CLI configured
+- CDK Python installed
+- Appropriate AWS permissions
+
+### Deployment
 
 ```bash
-# Initialize and deploy
-cd service-mesh-observability
 npm install
+cdk bootstrap  # First time only
 cdk deploy
 ```
 
-## 📊 Resources Created
-
-- CDK Stack with nested constructs
-- High availability components
-- Monitoring and logging
-- Security controls
-
-
 ## 💰 Cost Estimate
 
-**Monthly**: ~$200-500 (varies by usage)
+**Monthly**: ~$200-600 (varies by usage)
 
 ## 🔐 Security
 
-- Encryption at rest and in transit
-- IAM least privilege
-- Security group restrictions
-- Audit logging enabled
+- ✅ Encryption at rest and in transit
+- ✅ IAM least privilege principle
+- ✅ VPC with private subnets
+- ✅ Security group restrictions
+- ✅ Audit logging enabled
 
-## 📚 Documentation
+## 📊 Monitoring
 
-- [Architecture Details](ARCHITECTURE.md)
-- [Deployment Guide](docs/DEPLOYMENT.md)
-- [Operations Runbook](docs/RUNBOOK.md)
+- CloudWatch dashboards
+- Custom metrics
+- Alarms for critical thresholds
+- Log aggregation
 
-**Author**: Rahul Ladumor  
-**Email**: rahuldladumor@gmail.com  
-**License**: MIT 2025
+## 🤝 Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+
+## 📝 License
+
+This project is licensed under the MIT License - see [LICENSE](LICENSE).
+
+## 👤 Author
+
+**Rahul Ladumor**
+
+- 🌐 Portfolio: [acloudwithrahul.in](https://acloudwithrahul.in)
+- 💼 GitHub: [@rahulladumor](https://github.com/rahulladumor)
+- 📧 Email: rahuldladumor@gmail.com
+
+---
+
+⭐ **Star this repo if you find it useful!**
