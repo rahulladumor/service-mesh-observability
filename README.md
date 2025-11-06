@@ -15,30 +15,40 @@ Service mesh observability with Istio telemetry, distributed tracing, and metric
 
 ```mermaid
 graph TB
-    subgraph "Control Plane"
+    %% Control Plane
+    subgraph ControlPlane [Control Plane]
         API[API Gateway]
         Auth[Authentication]
     end
-    
-    subgraph "Data Plane"
+
+    %% Data Plane
+    subgraph DataPlane [Data Plane]
         Service1[Service Layer]
         Data[(Data Storage)]
     end
-    
-    subgraph "Observability"
+
+    %% Observability
+    subgraph Observability [Observability]
         Metrics[CloudWatch Metrics]
         Logs[CloudWatch Logs]
     end
-    
+
+    %% Connections
     API --> Auth
     Auth --> Service1
     Service1 --> Data
     Service1 -.-> Metrics
     Service1 -.-> Logs
-    
-    style "Control Plane" fill:#E3F2FD
-    style "Data Plane" fill:#E8F5E9
-    style Observability fill:#FFF3E0
+
+    %% Colors for each group
+    style API fill:#E3F2FD,stroke:#90CAF9
+    style Auth fill:#E3F2FD,stroke:#90CAF9
+
+    style Service1 fill:#E8F5E9,stroke:#81C784
+    style Data fill:#E8F5E9,stroke:#81C784
+
+    style Metrics fill:#FFF3E0,stroke:#FFB74D
+    style Logs fill:#FFF3E0,stroke:#FFB74D
 ```
 
 ## ✨ Features
